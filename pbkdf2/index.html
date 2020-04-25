@@ -5,115 +5,54 @@
   <title>PBKDF2</title>
   <link rel="manifest" href="./manifest.webmanifest">
   <meta name="viewport" content="width=device-width, initial-scale=2">
+  <style>
+      html {
+          height: 100%;
+      }
+
+      body {
+          text-align: center;
+          font-family: Arial, Helvetica, sans-serif;
+      }
+
+      form {
+        display: inline-block;
+      }
+
+      input, button, a {
+        font-size: 22px;
+      }
+
+      button, a {
+        cursor: pointer;
+      }
+
+      input {
+        padding: 5px 0;
+        margin: 0 0 5px;
+        border: 0 solid gray;
+        border-bottom-width: 2px;
+      }
+  </style>
 </head>
 <body>
-    <div>
-        <input type="text" placeholder="secret">
-    </div>
-    <div>
-        <input type="password" placeholder="password">
-    </div>
-    <div>
-        <button>
-            Run PBKDF2
-        </button>
-        <a>
-            Clean
-        </a>
-  </div>
-
-<script>
-(function () {
-    function pbkdf2 (password, secret) {
-        let encoder = new TextEncoder();
-        let subtle = window.crypto.subtle;
-
-        return subtle.importKey(
-            "raw",
-            encoder.encode(password),
-            "PBKDF2", 
-            false, 
-            ["deriveKey"]
-        ).then(function(keyMaterial) {
-            return subtle.deriveKey(
-                {
-                    name: "PBKDF2",
-                    salt: encoder.encode(secret),
-                    iterations: 100000,
-                    hash: "SHA-256"
-                }, 
-                keyMaterial, 
-                { 
-                    name: "AES-CTR", 
-                    length: 256 
-                }, 
-                true, 
-                ["encrypt"]
-            );
-        }).then(function(key) {
-            return subtle.exportKey(
-                "raw", 
-                key
-            )
-        }).then(function(key) {
-            return Array.prototype.map.call(new Uint8Array(key), function(num) {
-                return (num < 16 ? "0" : "") + num.toString(16);
-            }).join('');
-        });
-    }
-
-    function setClipboard (str) {
-        window.navigator.permissions.query(
-            {name: "clipboard-write"}
-        ).then(function(result) {
-            if (result.state == "granted" || result.state == "prompt") {
-                navigator.clipboard.writeText(str)
-            }
-        });
-    }
-
-    let link = document.querySelector('a');
-    let button = document.querySelector('button');
-    let secret = document.querySelector('[placeholder=secret]');
-    let password = document.querySelector('[placeholder=password]');
-
-    link.addEventListener('click', function () {
-        setClipboard('');
-        secret.value = "";
-        password.value = "";
-    });
-
-    button.addEventListener('click', function () {
-        pbkdf2(password.value, secret.value).then(function(hex){
-            setClipboard(build(hex));
-        });
-        secret.value = "";
-        password.value = "";
-    });
-
-    function getASCII () {
-        asciiChars = '';
-        for( let i = 32; i <= 126; i++ ){
-            asciiChars += String.fromCharCode( i );
-        }
-        return asciiChars;
-    }
-
-
-    function build (str) {
-        let chars = getASCII();
-        let password = "";
-        let bi = BigInt('0x'+str);
-        let length = BigInt(chars.length);
-        
-        while (password.length < 16) {
-            password += chars.charAt(Number(bi % length));
-            bi /= length;
-        }
-
-        return password;
-    }
-})();
-</script>
+    <form onsubmit="return false;">
+        <div>
+            <input type="text" placeholder="salt">
+        </div>
+        <div>
+            <input type="password" placeholder="password">
+        </div>
+        <div>
+            <button type="submit">
+                PBKDF2
+            </button>
+            &nbsp;
+            <a>
+                Clean
+            </a>
+        </div>
+    </form>
+<script src="pbkdf2.js"></script>
 </body>
 </html>

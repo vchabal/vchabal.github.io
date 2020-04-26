@@ -1,15 +1,20 @@
 {
     "name": "PBKDF2",
     "short_name": "pbkdf2",
-    "theme_color": "#2196f3",
-    "background_color": "#2196f3",
-    "display": "fullscreen",
+    "theme_color": "#f08080",
+    "background_color": "#f08080",
+    "display": "standalone",
     "scope": "/pbkdf2/",
     "start_url": "/pbkdf2/",
     "android_package_name":"com.github.vchabal.pbkdf2app",
     "icons": [
         {
-            "src": "icon-v2.png",
+            "src": "icon-v3.svg",
+            "sizes": "512x512",
+            "type": "image/svg+xml"
+        },
+        {
+            "src": "icon-v3.png",
             "sizes": "512x512",
             "type": "image/png"
         }

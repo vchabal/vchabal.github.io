@@ -1,16 +1,13 @@
 (function () {
     
     // Elements
-    let link = document.querySelector('a');
     let form = document.querySelector('form');
     let salt = document.querySelector('[placeholder=salt]');
     let password = document.querySelector('[placeholder=password]');
 
     // Reset clipboard and fields
-    link.addEventListener('click', function () {
+    form.addEventListener('reset', function () {
         setClipboard('');
-        salt.value = '';
-        password.value = '';
     });
 
     // Build key and encode it

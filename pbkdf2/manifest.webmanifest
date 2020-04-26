@@ -9,7 +9,7 @@
     "android_package_name":"com.github.vchabal.pbkdf2app",
     "icons": [
         {
-            "src": "icon-v1.png",
+            "src": "icon-v2.png",
             "sizes": "512x512",
             "type": "image/png"
         }

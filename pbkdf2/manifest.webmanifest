@@ -1,6 +1,6 @@
 {
     "name": "PBKDF2",
-    "short_name": "pbkdf2",
+    "short_name": "PBKDF2",
     "theme_color": "#f08080",
     "background_color": "#f08080",
     "display": "standalone",

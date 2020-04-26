@@ -3,7 +3,15 @@
     "short_name": "pbkdf2",
     "theme_color": "#2196f3",
     "background_color": "#2196f3",
-    "display": "standalone",
+    "display": "fullscreen",
     "scope": "/pbkdf2/",
-    "start_url": "/pbkdf2/"
+    "start_url": "/pbkdf2/",
+    "android_package_name":"com.github.vchabal.pbkdf2app",
+    "icons": [
+        {
+            "src": "icon-v1.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
 }

@@ -1,9 +1,9 @@
-const CACHE_NAME = 'pbkdf2-v5';
+const CACHE_NAME = 'pbkdf2-v7';
 const CACHE_FILES = [
     './',
-    'manifest.webmanifest',
     'index.html',
-    'pbkdf2.js'
+    'pbkdf2.js',
+    'icon-v1.png'
 ]
 
 self.addEventListener('install', event =>

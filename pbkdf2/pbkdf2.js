@@ -15,11 +15,13 @@
 
     // Build key and encode it
     form.addEventListener('submit', function (e) {
+        e.stopPropagation();
+        e.preventDefault();
+
         pbkdf2(password.value, salt.value).then(key => setClipboard(build(key)));
         salt.value = '';
         password.value = '';
 
-        e.stopPropagation();
         return false;
     });
 

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'pbkdf2-v10';
+const CACHE_NAME = 'pbkdf2-v11';
 const CACHE_FILES = [
     './',
     'index.html',

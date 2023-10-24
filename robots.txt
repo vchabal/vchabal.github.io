@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /pbkdf2/
+Disallow: /demo/
+Allow: /blog/

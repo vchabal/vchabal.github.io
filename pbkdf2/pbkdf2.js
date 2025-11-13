@@ -91,11 +91,12 @@
      * @param {string} str 
      */
     function setClipboard (str) {
-        window.navigator.permissions.query({name: 'clipboard-write'}).then(function(result) {
-            if (result.state == 'granted' || result.state == 'prompt') {
-                navigator.clipboard.writeText(str)
-            }
-        });
+        try {
+            navigator.clipboard.writeText(str);
+        } catch (err) {
+            console.log('Cannot write to clipboard', err);
+            window.prompt('Result', str);
+        }
     }
 
     /**
